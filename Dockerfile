@@ -25,6 +25,13 @@ RUN \
 
 RUN yarn install
 
+# Install NVM
+RUN \
+  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash \
+  source ~/.bashrc \
+  nvm install v14.10.0 \
+  nvm use v14.10.0
+
 # Install Chrome
 RUN \
   wget -q -O - https://dl-ssl.google.com/linux/linux_signing_key.pub | apt-key add - && \
