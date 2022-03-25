@@ -25,12 +25,17 @@ RUN \
 
 RUN yarn install
 
-# Install NVM
-RUN \
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash && \
-  source ~/.bashrc && \
-  nvm install v14.10.0 && \
-  nvm use v14.10.0
+SHELL ["/bin/bash", "--login", "-c"]
+
+RUN curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash
+RUN nvm install v14.10.0 #Install NVM
+RUN nvm use v14.10.0
+#RUN \
+#  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash && \
+#  bash -c "source /root/.bashrc" && \
+  #source ~/.bashrc && \
+#  nvm install v14.10.0 && \
+#  nvm use v14.10.0
 
 # Install Chrome
 RUN \
