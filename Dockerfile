@@ -3,7 +3,7 @@ MAINTAINER Kolosek
 
 # Initial setup
 RUN \
-  curl -sL https://deb.nodesource.com/setup_8.x | bash - && \
+  curl -sL https://deb.nodesource.com/setup_14.x | bash - && \
   apt-get update -yq && \
   apt-get install -y \
     apt-transport-https \
@@ -26,17 +26,6 @@ RUN \
 RUN yarn install
 
 SHELL ["/bin/bash", "--login", "-c"]
-
-ENV NVM_DIR /usr/local/nvm # or ~/.nvm , depending
-ENV NODE_VERSION 14.10.0
-
-# Install nvm with node and npm
-RUN \
-    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash && \
-    && . $NVM_DIR/nvm.sh \
-    && nvm install $NODE_VERSION \
-    && nvm alias default $NODE_VERSION \
-    && nvm use default
 
 # Install Chrome
 RUN \
