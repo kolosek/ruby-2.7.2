@@ -27,11 +27,16 @@ RUN yarn install
 
 SHELL ["/bin/bash", "--login", "-c"]
 
+ENV NVM_DIR /usr/local/nvm # or ~/.nvm , depending
+ENV NODE_VERSION 14.10.0
+
+# Install nvm with node and npm
 RUN \
-  curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash && \
-  source ~/.bashrc && \
-  nvm install v14.10.0 && \
-  nvm use v14.10.0
+    curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.38.0/install.sh | bash && \
+    && . $NVM_DIR/nvm.sh \
+    && nvm install $NODE_VERSION \
+    && nvm alias default $NODE_VERSION \
+    && nvm use default
 
 # Install Chrome
 RUN \
